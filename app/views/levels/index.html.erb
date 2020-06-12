@@ -1,0 +1,18 @@
+<h1> Niveles </h1>
+<%= link_to 'Crear', {controller: 'levels', action: 'new'} %>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @levels.each do |level| %>
+    <tr>
+      <th scope="row"><%= level.id %></th>
+      <td><%= level.name %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

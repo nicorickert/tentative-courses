@@ -1,0 +1,11 @@
+<h3> Nuevo Nivel </h3>
+<%= form_for :post, url: levels_path do |f| %>
+    <p>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </p>
+
+    <p>
+        <%= f.submit "Crear", { :class=> 'btn btn-info' } %>
+    <p>
+<% end %>
