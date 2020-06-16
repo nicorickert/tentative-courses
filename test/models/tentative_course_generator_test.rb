@@ -98,7 +98,7 @@ class CourseConditionsTest < ActiveSupport::TestCase
         courses_by_modality_and_schedule = @@course_with_modality.generate_courses(courses_by_schedule)
         courses_by_level_modality_schedule = @@course_with_level.generate_courses(courses_by_modality_and_schedule)
         generated_courses = @@course_with_same_schedule_modality_level_as_student.generate_courses(courses_by_level_modality_schedule)
-        assert_equal 4, generated_courses.length
+        assert_equal 6, generated_courses.length
         generated_courses.each do |course|
            assert_operator course.students.length, :<=, course.modality.max_students  # Reviso que los cursos creados si o si tengan estudantes
         end
@@ -111,7 +111,7 @@ class CourseConditionsTest < ActiveSupport::TestCase
         generated_courses = @@course_with_modality.generate_courses(generated_courses)
         generated_courses = @@course_with_level.generate_courses(generated_courses)
         generated_courses = @@course_with_same_schedule_modality_level_as_student.generate_courses(generated_courses)
-        assert_equal 3, generated_courses.length
+        assert_equal 6, generated_courses.length
         generated_courses.each do |course|
             assert course.valid?
         end
@@ -121,7 +121,7 @@ class CourseConditionsTest < ActiveSupport::TestCase
         generator = TentativeCoursesGenerator.new
         generator.conditions = [@@course_with_schedule, @@course_with_same_schedule_as_teacher, @@course_with_modality, @@course_with_level, @@course_with_same_schedule_modality_level_as_student]
         generated_courses = generator.generate_tentative_courses
-        assert_equal 3, generated_courses.length
+        assert_equal 6, generated_courses.length
         generated_courses.each do |course|
             assert course.valid?
         end
@@ -143,6 +143,22 @@ class CourseConditionsTest < ActiveSupport::TestCase
         generated_courses_by_gen.each.with_index do |course, index|
             assert generated_courses_by_conds[index].attributes == course.attributes
         end
+    end
+
+    test "Course in Tentative Courses" do
+        course = Course.new
+        course.level = Level.find(2)
+        course.modality = Modality.find(2)
+        course.schedule = Schedule.find(4)
+        course.teacher = Teacher.find(2)
+        course.students = Student.where(id: 3..5)
+        assert course.valid?
+
+        generator = TentativeCoursesGenerator.new
+        generator.conditions = [@@course_with_schedule, @@course_with_same_schedule_as_teacher, @@course_with_modality, @@course_with_level, @@course_with_same_schedule_modality_level_as_student]
+        generated_courses = generator.generate_tentative_courses
+
+        assert generated_courses.any? { |c| c.attributes == course.attributes }
     end
 
 end

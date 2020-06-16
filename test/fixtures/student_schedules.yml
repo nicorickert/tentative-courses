@@ -4,22 +4,47 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-jue9:
+ss1:
   id: 1
   student_id: 1
   schedule_id: 2
 
-lun13:
+ss2:
   id: 2
   student_id: 1
   schedule_id: 3
 
-mar15:
+ss3:
   id: 3
   student_id: 2
   schedule_id: 2
 
-s4:
+ss4:
   id: 4
   student_id: 3
+  schedule_id: 2
+
+ss5:
+  id: 5
+  student_id: 3
+  schedule_id: 4
+
+ss6:
+  id: 6
+  student_id: 4
+  schedule_id: 4
+
+ss7:
+  id: 7
+  student_id: 4
+  schedule_id: 5
+
+ss8:
+  id: 8
+  student_id: 5
+  schedule_id: 5
+
+ss9:
+  id: 9
+  student_id: 5
   schedule_id: 2

@@ -1,1 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+s3inc1:
+  student_id: 3
+  course_id: 1
+
+s4inc1:
+  student_id: 4
+  course_id: 1
+
+s5inc1:
+  student_id: 5
+  course_id: 1

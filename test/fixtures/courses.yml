@@ -4,16 +4,10 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-cursoUno:
-  id: 1
+courseOne:
+  id: nil
   teacher_id: 1
-  level: begginer
-  schedule: jue9
-  modality: individual
+  level_id: 2
+  schedule_id: 4
+  modality_id: 2
 
-cursoDos:
-  id: 2
-  teacher_id: 2
-  level: begginer
-  schedule: jue9
-  modality: individual
