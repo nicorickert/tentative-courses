@@ -5,6 +5,6 @@ class Course < ApplicationRecord
     belongs_to :schedule
     belongs_to :modality
     has_many :student_in_courses
-    has_many :students, through: :student_in_courses
-    validates_with SameScheduleAsTeacherValidator
+    has_many :students, through: :student_in_courses 
+    validates_with SameScheduleAsTeacherValidator, SameScheduleAsTeacherValidator, SameLevelOfAllStudentsValidator, SameModalityOfAllStudentsValidator, MaxStudentsAccordingToModalityValidator
 end

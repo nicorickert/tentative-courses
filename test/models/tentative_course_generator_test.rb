@@ -104,7 +104,7 @@ class CourseConditionsTest < ActiveSupport::TestCase
         end
     end
 
-    test "Tentative Courses" do
+    test "Tentative Courses generated with conditions" do
         empty_course = Course.new
         generated_courses = @@course_with_schedule.generate_courses([empty_course])
         generated_courses = @@course_with_same_schedule_as_teacher.generate_courses(generated_courses)
@@ -113,8 +113,35 @@ class CourseConditionsTest < ActiveSupport::TestCase
         generated_courses = @@course_with_same_schedule_modality_level_as_student.generate_courses(generated_courses)
         assert_equal 3, generated_courses.length
         generated_courses.each do |course|
-            assert_operator course.students.length, :<=, course.modality.max_students  # Reviso que los cursos creados si o si tengan estudantes
             assert course.valid?
+        end
+    end
+
+    test "Tentative Courses generated with generator" do
+        generator = TentativeCoursesGenerator.new
+        generator.conditions = [@@course_with_schedule, @@course_with_same_schedule_as_teacher, @@course_with_modality, @@course_with_level, @@course_with_same_schedule_modality_level_as_student]
+        generated_courses = generator.generate_tentative_courses
+        assert_equal 3, generated_courses.length
+        generated_courses.each do |course|
+            assert course.valid?
+        end
+    end
+
+    test "Tentative Courses generated with generator are the same as generated with conditions" do
+        empty_course = Course.new
+        generated_courses_by_conds = @@course_with_schedule.generate_courses([empty_course])
+        generated_courses_by_conds = @@course_with_same_schedule_as_teacher.generate_courses(generated_courses_by_conds)
+        generated_courses_by_conds = @@course_with_modality.generate_courses(generated_courses_by_conds)
+        generated_courses_by_conds = @@course_with_level.generate_courses(generated_courses_by_conds)
+        generated_courses_by_conds = @@course_with_same_schedule_modality_level_as_student.generate_courses(generated_courses_by_conds)
+        
+        generator = TentativeCoursesGenerator.new
+        generator.conditions = [@@course_with_schedule, @@course_with_same_schedule_as_teacher, @@course_with_modality, @@course_with_level, @@course_with_same_schedule_modality_level_as_student]
+        generated_courses_by_gen = generator.generate_tentative_courses
+
+        assert_equal generated_courses_by_conds.length, generated_courses_by_gen.length
+        generated_courses_by_gen.each.with_index do |course, index|
+            assert generated_courses_by_conds[index].attributes == course.attributes
         end
     end
 

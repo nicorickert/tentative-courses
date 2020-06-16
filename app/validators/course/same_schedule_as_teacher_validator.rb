@@ -1,6 +1,6 @@
-class SameScheduleAsTeacherValidator < ActiveModel::Validator
+class Course::SameScheduleAsTeacherValidator < ActiveModel::Validator
     def validate(course)
-        unless course.students.schedules.exists?(course.schedule)
+        unless course.teacher.schedules.include?(course.schedule)
             course.errors[:schedule] << 'Course needs to have same schedule as the teacher asigned'
         end
     end

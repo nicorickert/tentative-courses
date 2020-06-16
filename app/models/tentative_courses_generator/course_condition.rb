@@ -1,5 +1,4 @@
 class CourseCondition
-    include ActiveModel::Model
 
     def generate_courses initial_courses
         generated_courses = []
