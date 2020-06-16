@@ -1,9 +1,18 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  modality: 
-  level: 
+elenaNito:
+  id: 1
+  modality_id: 1 
+  level_id: 1
 
-two:
-  modality: 
-  level: 
+armandoBarreras:
+  id: 2
+  modality_id: 1
+  level_id: 1
+
+estebanQuito:
+  id: 3
+  modality_id: 2
+  level_id: 2
+
+

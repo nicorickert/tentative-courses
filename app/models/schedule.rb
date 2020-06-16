@@ -1,5 +1,5 @@
 class Schedule < ApplicationRecord
-    validates :hour, prescence: true, numericality: { greater_than_or_equal_to: 9, less_than_or_equal_to: 19 }
+    validates :hour, numericality: { greater_than_or_equal_to: 9, less_than_or_equal_to: 19 }, presence: true
     belongs_to :day_of_the_week
     #has_many :teacher_schedules
     #has_many :teachers, through :teacher_schedules

@@ -1,7 +1,21 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+begginer:
+  id: 1
+  name: "Beginner"
 
-two:
-  name: MyString
+preIntermediate:
+  id: 2
+  name: "Pre-Intermediate"
+
+intermediate:
+  id: 3
+  name: "Intermediate"
+
+upperIntermediate:
+  id: 4
+  name: "Upper-Intermediate"
+
+advanced:
+  id: 5
+  name: "Advanced"

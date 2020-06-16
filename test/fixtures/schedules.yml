@@ -1,9 +1,26 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  day: 
-  hour: 
+mon13:
+  id: 1
+  hour: 13
+  day_of_the_week: lun
 
-two:
-  day: 
-  hour: 
+tue15:
+  id: 2
+  hour: 15
+  day_of_the_week: mar
+
+wed15:
+  id: 3
+  hour: 15
+  day_of_the_week: mie
+
+thu9:
+  id: 4
+  hour: 9
+  day_of_the_week: jue
+
+fri15:
+  id: 5
+  hour: 15
+  day_of_the_week: vie

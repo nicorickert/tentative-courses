@@ -1,0 +1,46 @@
+Validad
+
+
+
+
+
+
+
+CondicionTentativeCourse >>
+    
+    // TODOS
+    Cursos[] listaValidada(Cursos[] cursos)
+        cursosValidados
+        foreach cursos c
+            cursosValdiados.concat(cursosPosiblesSegunCurso(c))
+
+
+    // Sobre cada schedule, consigo todos los posibles cursos que esta condicion imponga
+    Cursos [] cursosPosiblesSegunCurso(Curso curso) {
+        cursos = array()
+        allModels = model().all.select { |m| condition(curso, m) }   // filtro los modelos dependiendo la condicion que se busque
+        foreach allModels => m 
+            newCurso = curso.clone
+            newCurso[attr()] = m
+            array.add newCurso
+        end
+    }
+
+MismoHorarioTeacher < CondicionTentativeCourse >>
+    model() = Teacher
+    attr() = "teacher"
+    condition (curso, m) {
+        return m.schedules.include? curso.schedule
+    }
+
+QueTengaSchedule < CondicionTentativeCourse >>
+    model() = Schedule
+    attr() = "schedule"
+    condition (curso, m) {
+        return true // quiero un curso por cada schedule que existe
+    }
+
+// Mismo nivel
+
+// Misma modalidad -> agrego todos. y en otro metodo aparte, los separo dependiendo la modalidad
+
